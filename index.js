@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
 
-
 app.param('githubUserName', (req, res, next, value) => {
     const regex = /^[a-zA-Z]+$/g;
     const checkParam = regex.test(req.params.githubUserName);
+    if (!checkParam) {
+        return res.status(500).send('invalid params!')
+    }
     next();
 });
 
@@ -18,10 +20,12 @@ app.get('/api/v1/githubUser/:githubUserName/avatar', (req, res) => {
 });
 
 
-
 app.param('repoName', (req, res, next, value) => {
     const regex = /^[a-zA-Z]+$/g;
     const checkParam = regex.test(req.params.repoName);
+    if (!checkParam) {
+        return res.status(500).send('invalid params!')
+    }
     next();
 });
 
