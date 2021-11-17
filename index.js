@@ -17,6 +17,24 @@ app.get('/api/v1/githubUser/:githubUserName', (req, res) => {
 });
 
 app.get('/api/v1/githubUser/:githubUserName/avatar', (req, res) => {
+    getUser(req.params.githubUserName)
+        .then(data => {
+            res.send(`<!DOCTYPE html>
+                        <head>
+                            <title>${req.params.githubUserName}</title>
+                        </head>
+                        <body>
+                            <img src=${data.avatar_url}>
+                        </body>
+                    </html>`);
+        }).catch(() => {
+            res.send("Not Exist");
+        });
+});
+
+
+
+app.get('/api/v1/githubUser/:githubUserName/avatar', (req, res) => {
     res.send(`${req.params.githubUserName}`);
 });
 
