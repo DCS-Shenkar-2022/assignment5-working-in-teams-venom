@@ -1,5 +1,4 @@
 const axios = require('axios');
-
 getUser = githubUserName => {
     return new Promise((resolve, reject) => {
         axios.get(`https://api.github.com/users/${githubUserName}`)
@@ -30,7 +29,6 @@ getContributors = (githubUserName, repoName) => {
             });
     });
 };
-
 module.exports = {
     getUser,
     getRepo,
