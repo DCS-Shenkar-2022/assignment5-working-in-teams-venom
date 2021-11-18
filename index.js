@@ -26,7 +26,8 @@ app.get('/api/v1/githubUser/:githubUserName/:repoName', (req, res) => {
 app.get('/api/v1/githubUser/:githubUserName/:repoName/contributers', (req, res) => {
             getUserRepoContributors(req.params.githubUserName, req.params.repoName)
                 .then(data => {
-                    res.json(data);
+                    console.log(data);
+                    res.send(data);
                 }).catch(err => {
                     console.log(err)
                     res.status(400).send('incorrect paramters')
